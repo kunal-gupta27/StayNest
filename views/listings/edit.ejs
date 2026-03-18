@@ -12,36 +12,47 @@
 <form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
 
 <div class="mb-3">
-<label class="form-label">Title</label>
+<label for="title" class="form-label">Title</label>
 <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control">
 </div>
 
 <div class="mb-3">
-<label class="form-label">Description</label>
+<label for="desription" class="form-label">Description</label>
 <textarea name="listing[description]" rows="3" class="form-control"><%= listing.description %></textarea>
 </div>
 
 <div class="mb-3">
-<label class="form-label">Image Link</label>
-<input name="listing[image]" value="<%= listing.image %>" type="text" class="form-control">
+  <label class="form-label">Image Link</label>
+
+  <input 
+    name="listing[image][url]" 
+    value="<%= listing.image.url %>" 
+    type="text" 
+    class="form-control">
+
+  <!-- 🔥 YE ADD KARNA HI HAI -->
+  <input 
+    type="hidden" 
+    name="listing[image][filename]" 
+    value="<%= listing.image.filename %>">
 </div>
 
 <div class="row">
 
 <div class="mb-3 col-lg-6">
-<label class="form-label">Price</label>
+<label for="price" class="form-label">Price</label>
 <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control">
 </div>
 
 <div class="mb-3 col-lg-6">
-<label class="form-label">Country</label>
+<label for="country" class="form-label">Country</label>
 <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control">
 </div>
 
 </div>
 
 <div class="mb-3">
-<label class="form-label">Location</label>
+<label for="location" class="form-label">Location</label>
 <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control">
 </div>
 
