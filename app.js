@@ -84,6 +84,7 @@ app.post("/listings",async (req, res) => {
 //edit-> GET  -> /listings/:id/edit -> edit form -> submit
 //PUT-> /listings/:id
 
+
 //EDIT ROUTE
 app.get("/listings/:id/edit",async (req, res) => {
     let {id} = req.params;
@@ -91,13 +92,23 @@ app.get("/listings/:id/edit",async (req, res) => {
     res.render("listings/edit.ejs", {listing});
 })
 
-//update route
+// //update route
+
+// app.put("/listings/:id", async (req, res) => {
+//     let {id} = req.params;
+//     await Listing.findByIdAndUpdate(id, {...req.body.listing});
+//     res.redirect(`/listings/${id}`);
+// }) 
 
 app.put("/listings/:id", async (req, res) => {
-    let {id} = req.params;
-    await Listing.findByIdAndUpdate(id, {...req.body.listing});
+    let { id } = req.params;
+
+    let updatedData = req.body.listing;
+
+    await Listing.findByIdAndUpdate(id, updatedData);
+
     res.redirect(`/listings/${id}`);
-}) 
+});
 
 //DELETE Route -> /listinigs/:id
 
