@@ -12,10 +12,10 @@
   <div class="card">
 
     <img 
-      src="<%= listing.image.url %>" 
-      class="card-img-top show-img" 
-      alt="listing_image"
-    >
+  src="<%= typeof listing.image === 'string' ? listing.image : listing.image.url %>" 
+  class="card-img-top show-img" 
+  alt="listing_image"
+/>
 
     <div class="card-body">
 
