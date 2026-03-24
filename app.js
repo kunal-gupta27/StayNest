@@ -73,7 +73,10 @@ app.post("/listings",async (req, res) => {
     // let{title, description, image, price, location, country} = req.body;
     // let listing = req.body.listing;
     // new Listing
-    // console.log(listing);
+    if (!req.body.listing.title) {
+        return res.send("Title is required!");
+    }
+    console.log(req.body); 
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
