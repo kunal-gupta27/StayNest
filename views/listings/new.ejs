@@ -8,7 +8,7 @@
 
       <h3 class="mb-4 fw-bold">Create a New Listing</h3>
 
-      <form method="POST" action="/listings">
+      <form method="POST" action="/listings" novalidate class="needs-validation">
 
         <!-- Title -->
         <div class="mb-3">
@@ -19,7 +19,9 @@
             type="text"
             placeholder="Enter title"
             class="form-control"
+            required
           >
+          <div class="valid-feedback">Title looks good!</div>
         </div>
 
         <!-- Description -->
@@ -30,7 +32,10 @@
             name="listing[description]"
             rows="3"
             class="form-control"
+            required
           ></textarea>
+          <div class="invalid-feedback">Please Enter the Short Discription</div>
+
         </div>
 
         <!-- Image -->
@@ -53,10 +58,11 @@
             <input
               id="price"
               name="listing[price]"
-              type="number"
               placeholder="Enter price"
               class="form-control"
+              required
             >
+            <div class="invalid-feedback">Please Enter the valid price</div>
           </div>
 
           <div class="mb-3 col-lg-6">
@@ -67,9 +73,11 @@
               type="text"
               placeholder="Enter country"
               class="form-control"
+              required
             >
-          </div>
+            <div class="invalid-feedback">Please Enter the valid country name</div>
 
+          </div>
         </div>
 
         <!-- Location -->
@@ -81,13 +89,14 @@
             type="text"
             placeholder="Enter location"
             class="form-control"
+            required
           >
+          <div class="invalid-feedback">Please Enter the valid location</div>
         </div>
 
-        <!-- Button -->
-        <button class="btn btn-danger fw-bold">
-          Add
-        </button>
+        <button type="submit" class="btn btn-danger fw-bold">
+  Add
+</button>
 
       </form>
 

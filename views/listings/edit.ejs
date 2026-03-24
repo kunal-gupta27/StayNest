@@ -9,16 +9,18 @@
 
 <h3 class="mb-4 fw-bold">Edit Your Listing</h3>
 
-<form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
+<form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
 
 <div class="mb-3">
 <label for="title" class="form-label">Title</label>
-<input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control">
+<input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required>
+<div class="valid-feedback">Title looks good!</div>
 </div>
 
 <div class="mb-3">
 <label for="desription" class="form-label">Description</label>
-<textarea name="listing[description]" rows="3" class="form-control"><%= listing.description %></textarea>
+<textarea name="listing[description]" rows="3" class="form-control" required><%= listing.description %></textarea>
+<div class="valid-feedback">Please Enter the Short Discription</div>
 </div>
 
 <div class="mb-3">
@@ -28,32 +30,38 @@
     name="listing[image][url]" 
     value="<%= listing.image.url %>" 
     type="text" 
-    class="form-control">
+    class="form-control"
+    required
+    >
 
   <!-- 🔥 YE ADD KARNA HI HAI -->
   <input 
     type="hidden" 
     name="listing[image][filename]" 
     value="<%= listing.image.filename %>">
+    <div class="valid-feedback"></div>
 </div>
 
 <div class="row">
 
 <div class="mb-3 col-lg-6">
 <label for="price" class="form-label">Price</label>
-<input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control">
+<input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" required>
+<div class="valid-feedback">Please Enter the Valid Price</div>
 </div>
 
 <div class="mb-3 col-lg-6">
 <label for="country" class="form-label">Country</label>
-<input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control">
+<input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control" required>
+<div class="valid-feedback">Please Enter the valid country</div>
 </div>
 
 </div>
 
 <div class="mb-3">
 <label for="location" class="form-label">Location</label>
-<input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control">
+<input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control" required>
+<div class="valid-feedback">Please Enter the valid location</div>
 </div>
 
 <div>
@@ -69,4 +77,5 @@
 </div>
 
 </div>
+<script src="/js/script.js"></script>
 </body>
