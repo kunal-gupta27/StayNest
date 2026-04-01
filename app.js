@@ -11,6 +11,10 @@ const { wrap } = require("module");
 const {listingSchema, reviewSchema} = require("./schema.js");
 const Review = require("./models/review.js");
 
+
+const listings = require("./routes/listing.js");
+
+
 const MONGO_URL = "mongodb://127.0.0.1:27017/staynest";
 
 main().then(()=>{
@@ -45,7 +49,6 @@ const validateListing = (req, res, next) => {
     }
 }
 
-
 const validateReview = (req, res, next) => {
     let {error} = reviewSchema.validate(req.body);
     if(error){
@@ -55,6 +58,10 @@ const validateReview = (req, res, next) => {
         next();
     }
 }
+
+
+app.use("/listings", listings);
+
 
 // app.get("/testListing",async (req, res) => {
 //     let samplListing = new Listing({
