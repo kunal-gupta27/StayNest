@@ -164,7 +164,7 @@ app.delete("/listings/:id", async (req, res) => {
     res.redirect("/listings");
 });
 
-//Reviews
+//Reviews Routing working here
 //Post Review Routes
 app.post("/listings/:id/reviews", 
     validateReview, 
