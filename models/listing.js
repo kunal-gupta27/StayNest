@@ -16,8 +16,8 @@ const listingSchema = new Schema({
         },
         url: {
             type: String,
-            default: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
-        }
+            default: "https://unsplash.com/photos/person-in-swimming-pool-during-daytime-rlwE8f8anOc"
+}
     },
 
     price: Number,
