@@ -100,28 +100,30 @@ app.get("/listings/:id", wrapAsync(async (req, res)=>{
     res.render("listings/show.ejs", {listing});
 }));
 
-//Create route
 app.post("/listings", 
     validateListing,  
     wrapAsync(async (req, res, next) => {
+
         if (!req.body.listing) {
-        // return res.send("Title is required!");
-        throw new ExpressError(400, "Send valid data for listing")
-    }
-    console.log(req.body); 
-    
-    const newListing = new Listing(req.body.listing);
-    // if(!newListing.title){
-    //     throw new ExpressError(400, "title is missing!!")
-    // }
-    // if(!newListing.description  ){
-    //     throw new ExpressError(400, "description is missing!!")
-    // }
-    // if(!newListing.location){
-    //     throw new ExpressError(400, "Location is missing!!")
-    // }
-    await newListing.save();
-    res.redirect("/listings");
+            throw new ExpressError(400, "Send valid data for listing");
+        }
+
+        console.log(req.body); 
+        
+        const newListing = new Listing(req.body.listing);
+
+        // ✅ default image logic
+        if (!newListing.image || !newListing.image.url || newListing.image.url.trim() === "") {
+            newListing.image = {
+                url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+                filename: "defaultimage"
+            };
+        }
+
+        await newListing.save();
+
+        // ✅ IMPORTANT (ye missing tha)
+        res.redirect("/listings");
     
 }));
 
