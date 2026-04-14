@@ -23,3 +23,7 @@ const initDB = async () => {
 };
 
 initDB();
+
+
+// run-> data ko initialize krne k liye 
+// node init.js run krnna hota hain
