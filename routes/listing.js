@@ -34,15 +34,11 @@ router.route("/:id")
 
 // //Index Route
 // router.get("/", wrapAsync(listingController.index));
-
 //Create: New & Create Route
 //GET -> /listings/new -> form ->submit->
 //POST -> /listings
-
 // //New Route
 // router.get("/new", isLoggedIn, listingController.renderNewForm);
-
-
 // //Read : Show Route
 // // GET -> /listings/:id -> data dikhayega
 // router.get("/:id", wrapAsync(listingController.showListing));
