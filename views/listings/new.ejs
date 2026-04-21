@@ -8,7 +8,7 @@
 
       <h3 class="mb-4 fw-bold">Create a New Listing</h3>
 
-      <form method="POST" action="/listings" novalidate class="needs-validation">
+      <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
 
         <!-- Title -->
         <div class="mb-3">
@@ -40,12 +40,11 @@
 
         <!-- Image -->
 <div class="mb-3">
-  <label for="image" class="form-label">Image Link</label>
+  <label for="image" class="form-label">Upload Listing Image</label>
   <input
     id="image"
-    name="listing[image][url]"
-    type="text"
-    placeholder="Enter image URL/Link"
+    name="listing[image]"
+    type="file"
     class="form-control"
   >
 </div>
