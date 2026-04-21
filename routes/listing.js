@@ -7,16 +7,22 @@ const Review = require("../models/review.js");
 const {isLoggedIn, isOwner, validateListing, validateReview} = require("../middleware.js");
 
 const listingController = require("../controllers/listing.js");
+const multer  = require('multer');
+const {storage} = require("../cloudConfig.js");
+const upload = multer({ storage });
+
 
 
 // same route ko ek sath likhna 
 router
     .route("/")
-.get(wrapAsync(listingController.index))
-.post(
-    isLoggedIn, 
-    validateListing,  
-    wrapAsync(listingController.createListing));
+    .get(wrapAsync(listingController.index))
+    .post(
+        isLoggedIn, 
+        // validateListing,
+        upload.single('listing[image]'),  
+        wrapAsync(listingController.createListing));
+
 
 //New Route
 router.get("/new", isLoggedIn, listingController.renderNewForm);
