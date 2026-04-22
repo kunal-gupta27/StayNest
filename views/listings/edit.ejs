@@ -9,7 +9,7 @@
 
 <h3 class="mb-4 fw-bold">Edit Your Listing</h3>
 
-<form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
+<form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
 
 <div class="mb-3">
 <label for="title" class="form-label">Title</label>
@@ -24,14 +24,18 @@
 </div>
 
 <div class="mb-3">
-  <label class="form-label">Image Link</label>
+  <p>Original Listing Image</p>
+  <img src="<%= originalImageUrl %>" alt="listing_img" width="250">
+</div>
+
+<div class="mb-3">
+  <label class="form-label">Upload New Image</label>
 
   <input 
-    name="listing[image][url]" 
+    name="listing[image]" 
     value="<%= listing.image.url %>" 
-    type="text" 
+    type="file" 
     class="form-control"
-    required
     >
 
   <!-- 🔥 YE ADD KARNA HI HAI -->
