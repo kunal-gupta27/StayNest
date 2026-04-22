@@ -31,21 +31,25 @@ module.exports.showListing  = async (req, res)=>{
 module.exports.createListing = async (req, res, next) => {
     let url = req.file.path;
     let filename = req.file.filename;
-    
 
-        if (!req.body.listing) {
-        // return res.send("Title is required!");
+    if (!req.body.listing) {
         throw new ExpressError(400, "Send valid data for listing")
     }
-    console.log(req.body); 
-    
+
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
-    newListing.image = {url, filename};
+    newListing.image = { url, filename };
+
+    // 🔥 ADD THIS (IMPORTANT)
+    newListing.geometry = {
+        type: "Point",
+        coordinates: [-118.7798, 34.0259] // abhi test ke liye Malibu
+    };
+
     await newListing.save();
+
     req.flash("success", "New Listing Created!!");
     res.redirect("/listings");
-    
 };
 
 module.exports.rendereditForm = async (req, res) => {
@@ -55,20 +59,35 @@ module.exports.rendereditForm = async (req, res) => {
         req.flash("error", "Listing does not exist!!");
         return res.redirect("/listings");
     }
-    res.render("listings/edit.ejs", {listing});
+
+    let originalImageUrl = listing.image.url;
+    originalImageUrl = originalImageUrl.replace("/upload", "/upload/ w_250");
+    res.render("listings/edit.ejs", {listing, originalImageUrl});
 };
 
 module.exports.updateListing = async (req, res) => {
     const { id } = req.params;
 
-    const updatedData = req.body.listing;
+    let listing = await Listing.findById(id);
 
-    // ✅ Update
-    await Listing.findByIdAndUpdate(id, updatedData, { new: true });
+    // 🔥 IMPORTANT: image ko skip karo
+    let updatedData = { ...req.body.listing };
+    delete updatedData.image;
+
+    Object.assign(listing, updatedData);
+
+    // ✅ Only update image if new one is uploaded
+    if (req.file) {
+        listing.image = {
+            url: req.file.path,
+            filename: req.file.filename
+        };
+    }
+
+    await listing.save();
 
     req.flash("success", "Listing Updated!!");
-
-    return res.redirect(`/listings/${id}`); // ✅ return added
+    res.redirect(`/listings/${id}`);
 };
 
 module.exports.destroyListing = async (req, res) => {
