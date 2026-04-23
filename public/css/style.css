@@ -104,3 +104,10 @@ body {
 .d-flex gap-2{
     display: flex;
 }
+
+/* map */
+
+#map {
+    height: 400px;
+    width: 80vh;
+ }
