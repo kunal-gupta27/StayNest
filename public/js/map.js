@@ -1,9 +1,18 @@
-const map = L.map('map').setView([coords[1], coords[0]], 10);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
+mapboxgl.accessToken = mapToken;
+const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [77.2090, 28.6139], // starting position [lng, lat]. Note that lat must be set between -90 and 90
+        zoom: 9 // starting zoom
+});
 
-L.marker([coords[1], coords[0]]).addTo(map)
-    .bindPopup("Property Location")
-    .openPopup();
+
+
+console.log(coordinates);
+
+
+ // Create a default Marker and add it to the map.
+const marker = new mapboxgl.Marker()
+        .setLngLat(coordinates)  //Listing.gemoetry.coordinates
+        .addTo(map);
