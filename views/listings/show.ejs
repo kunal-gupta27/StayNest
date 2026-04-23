@@ -1,5 +1,10 @@
 <% layout("/layouts/boilerplate") %>
 
+<script>
+    const mapToken = "<%= process.env.MAP_TOKEN %>";
+    const coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+</script>
+
 <div class="container mt-5">
 
   <h3 class="mb-4 fw-bold"><%= listing.title %></h3>
@@ -41,9 +46,10 @@
           </button>
         </form>
       </div>
-      <%}%> <% if(currUser) { %>
+      <%}%> 
       <div>
-        <hr/>
+        <% if(currUser) { %>
+          <hr />
         <h4>Leave a Review</h4>
         <form action="/listings/<%= listing._id%>/reviews" method="POST" novalidate class="needs-validation">
           <div class="mb-3 mt-3">
@@ -74,14 +80,14 @@
 
         <% } %>
         <hr/>
-        <!-- 🔥 MAP ADDED HERE -->
+        <!-- 🔥 MAP ADDED HERE
         <hr/>
         <h4>Location</h4>
-        <div id="map" style="height: 300px;"></div>
+        <div id="map" style="height: 300px;"></div> -->
 
-
-        <p><b>All Reviews</b></p>
+        <% if(listing.reviews.length > 0) { %>
         <div class="row">
+          <p><b>All Reviews</b></p>
         <% for(review of listing.reviews)  {%>
           <div class="card col-5 ms-3 mb-3">
             <div class="card-body">
@@ -96,6 +102,7 @@
           </div>
         <%}%>
         </div>
+        <%}%>
       </div>
     </div>
 
@@ -104,10 +111,10 @@
 </div>
 
   </div>
-
+<div class="col-6 offset-3 mb-3">
+  <h3>Where you will be</h3>
+  <div id="map"></div>
 </div>
-<script>
-  const coords = <%- JSON.stringify(listing.geometry.coordinates) %>;
-</script>
+</div>
 
 <script src="/js/map.js"></script>
