@@ -51,9 +51,9 @@ const sessionOptions = {
     }
 };
 
-app.get("/",(req, res)=>{
-    res.send("woking Fine");
-}); 
+// app.get("/",(req, res)=>{
+//     res.send("woking Fine");
+// }); 
 
 app.use(session(sessionOptions));
 app.use(flash());
