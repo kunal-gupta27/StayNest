@@ -57,7 +57,7 @@ const sampleListings = [
     },
     price: 800,
     location: "Portland",
-    country: "United States",
+    country: "United State",
   },
   {
     title: "Beachfront Paradise",
