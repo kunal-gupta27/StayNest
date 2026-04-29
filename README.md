@@ -1,18 +1,45 @@
-# 🏡 StayNest — Full-Stack Rental Listing Platform
+# 🏡 StayNest — Full-Stack Rental Platform
 
-StayNest is a full-stack web application inspired by Airbnb, designed to allow users to explore, create, manage, and update property listings seamlessly. The project demonstrates core concepts of modern web development using a clean MVC architecture and RESTful design principles.
+StayNest is a production-ready full-stack rental listing platform inspired by Airbnb.
+It allows users to explore properties, create listings, upload images, view locations on maps, and securely manage their accounts.
+
+The project demonstrates real-world backend architecture, authentication systems, cloud integrations, and scalable design patterns.
 
 ---
 
 ## 🚀 Key Features
 
-* 📌 Browse all available property listings
-* ➕ Create new listings with image URLs
-* ✏️ Edit and update listing details
-* ❌ Delete listings
-* 🖼️ Dynamic image rendering
-* 💰 Price formatting (Indian locale support)
-* 📱 Responsive UI using Bootstrap
+### 🌐 Core Features
+
+* Browse all property listings
+* View detailed listing pages with images & location
+* Create, edit, and delete listings (CRUD)
+
+### 🔐 Authentication & Authorization
+
+* User signup & login using Passport.js
+* Session-based authentication
+* Route protection (only owners can edit/delete listings)
+
+### ☁️ Cloud Integrations
+
+* Image upload & storage using Cloudinary
+* Optimized image delivery via CDN
+
+### 🗺️ Maps Integration
+
+* Interactive maps powered by Mapbox
+* Display listing locations with markers
+* Geocoding for converting addresses → coordinates
+
+### 🎨 UI/UX
+
+* Responsive design using Bootstrap
+* Dynamic rendering with EJS templates
+
+### 💰 Localization
+
+* Indian currency formatting (₹)
 
 ---
 
@@ -20,10 +47,8 @@ StayNest is a full-stack web application inspired by Airbnb, designed to allow u
 
 ### Frontend
 
-* HTML5
-* CSS3
-* Bootstrap
-* EJS (Embedded JavaScript Templates)
+* HTML5, CSS3, Bootstrap
+* EJS (Server-side templating)
 
 ### Backend
 
@@ -32,19 +57,24 @@ StayNest is a full-stack web application inspired by Airbnb, designed to allow u
 
 ### Database
 
-* MongoDB
+* MongoDB Atlas
 * Mongoose
+
+### Authentication
+
+* Passport.js
+* express-session
 
 ---
 
 ## 🧱 Architecture & Concepts
 
-* MVC (Model-View-Controller) Architecture
+* MVC (Model-View-Controller)
 * RESTful Routing
-* Server-side Rendering with EJS
-* Middleware (Method Override)
-* CRUD Operations with MongoDB
-* Data validation and structured schema design
+* Middleware (Authentication, Validation, Error Handling)
+* Server-side Rendering (SSR)
+* Secure session handling
+* File upload & cloud storage
 
 ---
 
@@ -54,94 +84,87 @@ StayNest is a full-stack web application inspired by Airbnb, designed to allow u
 StayNest/
 │
 ├── models/
-│   └── listing.js
-│
+├── routes/
+├── controllers/
 ├── views/
-│   ├── layouts/
-│   │   └── boilerplate.ejs
-│   ├── includes/
-│   │   └── navbar.ejs
-│   ├── listings/
-│   │   ├── index.ejs
-│   │   ├── new.ejs
-│   │   ├── edit.ejs
-│   │   └── show.ejs
-│
 ├── public/
-│   └── css/
-│
+├── utils/
+├── cloudConfig/     # Cloudinary setup
 ├── app.js
 └── package.json
 ```
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ Setup & Installation
 
-1. Clone the repository
+### 1️⃣ Clone Repo
 
 ```
 git clone https://github.com/your-username/staynest.git
-```
-
-2. Navigate to the project directory
-
-```
 cd staynest
 ```
 
-3. Install dependencies
+### 2️⃣ Install Dependencies
 
 ```
 npm install
 ```
 
-4. Start MongoDB locally
+### 3️⃣ Environment Variables (.env)
 
-5. Run the application
+```
+ATLASDB_URL=your_mongodb_url
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_KEY=your_key
+CLOUDINARY_SECRET=your_secret
+MAPBOX_TOKEN=your_mapbox_token
+SESSION_SECRET=your_secret
+```
+
+### 4️⃣ Run App
 
 ```
 node app.js
 ```
 
-6. Access the application
+Visit:
 
 ```
-http://localhost:3000/listings
-```
-
----
-
-## ⚠️ Common Issues & Resolutions
-
-### Image not rendering
-
-Ensure correct access of image object:
-
-```
-listing.image.url
-```
-
-### Image disappears after update
-
-Convert image string to object in backend:
-
-```js
-listing.image = {
-  url: listing.image,
-  filename: "listingimage"
-};
+http://localhost:8080/listings
 ```
 
 ---
 
-## 🔮 Future Enhancements
+## ⚠️ Common Issues
 
-* User authentication (JWT / Sessions)
-* Cloud-based image upload (Cloudinary)
-* Reviews and ratings system
-* Interactive maps integration
-* Booking and availability system
+### ❌ Images not loading
+
+Ensure Cloudinary config is correct and file upload middleware is used properly.
+
+### ❌ Maps not displaying
+
+Check your Mapbox token and ensure it's passed to the frontend.
+
+---
+
+## 🔮 Future Improvements
+
+* 📅 Booking & reservation system
+* 💳 Payments integration (e.g., Stripe / Razorpay)
+* ⭐ Reviews & ratings
+* 💬 Real-time chat system (Socket.io)
+* 📊 Admin dashboard
+
+---
+
+## 📈 Why This Project Stands Out
+
+* Full authentication system with protected routes
+* Real-world cloud integrations (Cloudinary + Mapbox)
+* Clean MVC architecture & scalable codebase
+* Production-ready backend practices
+* End-to-end CRUD + secure user flows
 
 ---
 
@@ -151,6 +174,6 @@ listing.image = {
 
 ---
 
-## ⭐ Acknowledgement
+## ⭐ Support
 
-If you find this project useful, consider giving it a ⭐ on GitHub.
+If you like this project, give it a ⭐ on GitHub!
