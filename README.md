@@ -1,9 +1,15 @@
 # 🏡 StayNest — Full-Stack Rental Platform
 
-StayNest is a production-ready full-stack rental listing platform inspired by Airbnb.
+StayNest is a production-ready full-stack rental listing platform inspired by Airbnb.  
 It allows users to explore properties, create listings, upload images, view locations on maps, and securely manage their accounts.
 
 The project demonstrates real-world backend architecture, authentication systems, cloud integrations, and scalable design patterns.
+
+🌐 **Live Demo:**  
+https://staynest-kld2.onrender.com
+
+🔗 **GitHub Repository:**  
+https://github.com/kunal-gupta27/StayNest
 
 ---
 
