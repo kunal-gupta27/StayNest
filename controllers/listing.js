@@ -82,7 +82,7 @@ module.exports.updateListing = async (req, res) => {
 
     Object.assign(listing, updatedData);
 
-    // ✅ Only update image if new one is uploaded
+    // ✅ Only update image if new one is uploaded it is updated 
     if (req.file) {
         listing.image = {
             url: req.file.path,
